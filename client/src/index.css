@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-family: "Oswald", sans-serif;
+  background-color: #e5e7eb;
+  letter-spacing: 0.04em;
+  color: black;
+}
