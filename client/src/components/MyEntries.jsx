@@ -13,9 +13,12 @@ const MyEntries = () => {
       if (!user) return;
 
       try {
-        const res = await axios.get("http://localhost:5000/api/my-kilometers", {
-          params: { userId: user.id },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/my-kilometers`,
+          {
+            params: { userId: user.id },
+          }
+        );
         setEntries(res.data);
       } catch (err) {
         console.error("Virhe haettaessa merkintöjä:", err);
@@ -39,11 +42,14 @@ const MyEntries = () => {
 
   const saveEdit = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/kilometers/${editingId}`, {
-        userId: user.id,
-        date: editData.date,
-        kilometers: parseFloat(editData.kilometers),
-      });
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/kilometers/${editingId}`,
+        {
+          userId: user.id,
+          date: editData.date,
+          kilometers: parseFloat(editData.kilometers),
+        }
+      );
 
       const updated = entries.map((entry) =>
         entry._id === editingId ? { ...entry, ...editData } : entry

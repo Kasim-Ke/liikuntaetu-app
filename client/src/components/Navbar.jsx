@@ -21,12 +21,15 @@ const Navbar = () => {
       if (!user) return;
 
       try {
-        const res = await axios.post("http://localhost:5000/api/register", {
-          clerkId: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.primaryEmailAddress.emailAddress,
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/register`,
+          {
+            clerkId: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.primaryEmailAddress.emailAddress,
+          }
+        );
 
         setClerkId(user.id);
 

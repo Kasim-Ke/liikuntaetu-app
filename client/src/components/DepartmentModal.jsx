@@ -8,7 +8,7 @@ const DepartmentModal = ({ clerkId, onDepartmentSaved }) => {
     if (!department) return alert("Valitse osasto!");
 
     try {
-      await axios.post("http://localhost:5000/api/set-department", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/set-department`, {
         clerkId,
         department,
       });

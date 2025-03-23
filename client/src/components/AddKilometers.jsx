@@ -20,7 +20,7 @@ const AddKilometers = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/kilometers", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/kilometers`, {
         userId: user.id,
         date,
         kilometers: parseFloat(kilometers),
