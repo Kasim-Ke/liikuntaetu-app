@@ -16,7 +16,7 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <BrowserRouter basename="/liikuntaEtu">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </ClerkProvider>
