@@ -92,7 +92,7 @@ const Navbar = () => {
                   to="/leaderboard"
                   className="hover:text-blue-400 transition"
                 >
-                  Leaderboard
+                  Kärkitaulukko
                 </Link>
                 <Link to="/add" className="hover:text-blue-400 transition">
                   Lisää kilometrit
@@ -139,7 +139,7 @@ const Navbar = () => {
           <ul className="flex flex-col text-2xl  items-center justify-center py-4 space-y-4 font-semibold">
             <li>
               <Link to="/leaderboard" onClick={toggleMenu}>
-                Leaderboard
+                Kärkitaulukko
               </Link>
             </li>
             <li>
