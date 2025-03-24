@@ -51,7 +51,7 @@ const AddKilometers = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-[40%] bg-white p-6 rounded-xl shadow-md space-y-6">
+    <div className="max-w-md mx-auto md:my-[10%] my-[40%] bg-white p-6 rounded-xl shadow-md space-y-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <h2 className="text-2xl font-bold mb-2">Lisää päivän kilometrit</h2>
 
