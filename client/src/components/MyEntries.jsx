@@ -69,6 +69,21 @@ const MyEntries = () => {
     }
   };
 
+  const deleteEntry = async (id) => {
+    if (!confirm("Haluatko varmasti poistaa tämän merkinnän?")) return;
+
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/kilometers/${id}`
+      );
+      setEntries(entries.filter((entry) => entry._id !== id));
+      setEditingId(null);
+    } catch (err) {
+      console.error("Virhe poistettaessa:", err);
+      alert("Poisto epäonnistui.");
+    }
+  };
+
   return (
     <div className="pt-24 px-4 sm:px-6 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-center sm:text-left">
@@ -105,10 +120,10 @@ const MyEntries = () => {
                   Tallenna
                 </button>
                 <button
-                  onClick={() => setEditingId(null)}
+                  onClick={() => deleteEntry(editingId)}
                   className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                 >
-                  Peruuta
+                  Poista
                 </button>
               </div>
             </div>
