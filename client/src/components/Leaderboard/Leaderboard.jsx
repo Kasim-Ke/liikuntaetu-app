@@ -22,7 +22,7 @@ const Leaderboard = () => {
   const getMedal = (index) => {
     switch (index) {
       case 0:
-        return "🥇";
+        return "👑";
       case 1:
         return "🥈";
       case 2:
