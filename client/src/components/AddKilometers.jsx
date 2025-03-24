@@ -68,7 +68,7 @@ const AddKilometers = () => {
 
         <div>
           <label className="block mb-1 font-medium">
-            Kilometrit (yhteensä meno + paluu)
+            Kilometrit yhteensä (meno + paluu)
           </label>
           <input
             type="number"
