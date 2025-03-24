@@ -106,7 +106,8 @@ const AddKilometers = () => {
               className="flex justify-between items-center bg-gray-100 p-2 rounded"
             >
               <span>
-                {entry.date}: {entry.kilometers} km
+                {new Date(entry.date).toLocaleDateString("fi-FI")}:{" "}
+                {entry.kilometers} km
               </span>
             </li>
           ))}
