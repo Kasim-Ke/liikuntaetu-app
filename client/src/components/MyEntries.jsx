@@ -63,22 +63,24 @@ const MyEntries = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Omat merkinnät</h1>
+    <div className="pt-24 px-4 sm:px-6 max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6 text-center sm:text-left">
+        Omat merkinnät
+      </h1>
 
       {entries.map((entry) => (
         <div
           key={entry._id}
-          className="mb-4 p-4 border rounded-lg bg-white shadow flex justify-between items-center"
+          className="mb-4 p-4 border rounded-lg bg-white shadow flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
         >
           {editingId === entry._id ? (
-            <div className="flex gap-4 w-full items-center">
+            <div className="flex flex-col sm:flex-row gap-4 w-full items-start sm:items-center">
               <input
                 type="date"
                 name="date"
                 value={editData.date}
                 onChange={handleEditChange}
-                className="border p-2 rounded w-[150px]"
+                className="border p-2 rounded w-full sm:w-[150px]"
               />
               <input
                 type="number"
@@ -86,23 +88,25 @@ const MyEntries = () => {
                 name="kilometers"
                 value={editData.kilometers}
                 onChange={handleEditChange}
-                className="border p-2 rounded w-[100px]"
+                className="border p-2 rounded w-full sm:w-[100px]"
               />
-              <button
-                onClick={saveEdit}
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-              >
-                Tallenna
-              </button>
-              <button
-                onClick={() => setEditingId(null)}
-                className="text-gray-600 underline"
-              >
-                Peruuta
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={saveEdit}
+                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                >
+                  Tallenna
+                </button>
+                <button
+                  onClick={() => setEditingId(null)}
+                  className="text-gray-600 underline"
+                >
+                  Peruuta
+                </button>
+              </div>
             </div>
           ) : (
-            <div className="flex justify-between w-full items-center">
+            <div className="flex flex-col sm:flex-row justify-between w-full gap-2 sm:gap-0 sm:items-center">
               <span>{new Date(entry.date).toLocaleDateString("fi-FI")}</span>
               <span>{entry.kilometers} km</span>
               <button
