@@ -52,35 +52,13 @@ const MyEntries = () => {
       );
 
       const updated = entries.map((entry) =>
-        entry._id === editingId
-          ? {
-              ...entry,
-              date: editData.date,
-              kilometers: parseFloat(editData.kilometers),
-            }
-          : entry
+        entry._id === editingId ? { ...entry, ...editData } : entry
       );
 
       setEntries(updated);
       setEditingId(null);
     } catch (err) {
       console.error("Virhe päivityksessä:", err);
-      alert("Päivitys epäonnistui.");
-    }
-  };
-
-  const deleteEntry = async (id) => {
-    if (!confirm("Haluatko varmasti poistaa tämän merkinnän?")) return;
-
-    try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/kilometers/${id}`
-      );
-      setEntries(entries.filter((entry) => entry._id !== id));
-      setEditingId(null);
-    } catch (err) {
-      console.error("Virhe poistettaessa:", err);
-      alert("Poisto epäonnistui.");
     }
   };
 
@@ -120,10 +98,10 @@ const MyEntries = () => {
                   Tallenna
                 </button>
                 <button
-                  onClick={() => deleteEntry(editingId)}
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                  onClick={() => setEditingId(null)}
+                  className="text-gray-600 underline"
                 >
-                  Poista
+                  Peruuta
                 </button>
               </div>
             </div>
@@ -133,7 +111,7 @@ const MyEntries = () => {
               <span>{entry.kilometers} km</span>
               <button
                 onClick={() => startEditing(entry)}
-                className="text-blue-600 underline hover:text-blue-800"
+                className="text-blue-600 underline"
               >
                 Muokkaa
               </button>
