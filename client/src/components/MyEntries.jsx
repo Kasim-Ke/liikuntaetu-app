@@ -52,13 +52,20 @@ const MyEntries = () => {
       );
 
       const updated = entries.map((entry) =>
-        entry._id === editingId ? { ...entry, ...editData } : entry
+        entry._id === editingId
+          ? {
+              ...entry,
+              date: editData.date,
+              kilometers: parseFloat(editData.kilometers),
+            }
+          : entry
       );
 
       setEntries(updated);
       setEditingId(null);
     } catch (err) {
       console.error("Virhe päivityksessä:", err);
+      alert("Päivitys epäonnistui.");
     }
   };
 
@@ -99,7 +106,7 @@ const MyEntries = () => {
                 </button>
                 <button
                   onClick={() => setEditingId(null)}
-                  className="text-gray-600 underline"
+                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                 >
                   Peruuta
                 </button>
@@ -111,7 +118,7 @@ const MyEntries = () => {
               <span>{entry.kilometers} km</span>
               <button
                 onClick={() => startEditing(entry)}
-                className="text-blue-600 underline"
+                className="text-blue-600 underline hover:text-blue-800"
               >
                 Muokkaa
               </button>
