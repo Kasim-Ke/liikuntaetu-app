@@ -1,7 +1,7 @@
 import { useUser } from "@clerk/clerk-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AddKilometers = () => {
   const { user } = useUser();
@@ -50,23 +50,8 @@ const AddKilometers = () => {
     }
   };
 
-  const handleDelete = async (entryId) => {
-    if (!confirm("Haluatko varmasti poistaa tämän merkinnän?")) return;
-
-    try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/kilometers/${entryId}`
-      );
-      setEntries(entries.filter((entry) => entry._id !== entryId));
-      alert("Merkintä poistettu!");
-    } catch (err) {
-      console.error("Virhe poistettaessa:", err);
-      alert("Poisto epäonnistui.");
-    }
-  };
-
   return (
-    <div className="max-w-md mx-auto my-[40%]  bg-white p-6 rounded-xl shadow-md space-y-6">
+    <div className="max-w-md mx-auto my-[40%] bg-white p-6 rounded-xl shadow-md space-y-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <h2 className="text-2xl font-bold mb-2">Lisää päivän kilometrit</h2>
 
@@ -104,7 +89,16 @@ const AddKilometers = () => {
       </form>
 
       <div className="mt-6">
-        <h3 className="text-xl font-semibold mb-2">Aiemmat merkinnät</h3>
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-xl font-semibold">Aiemmat merkinnät</h3>
+          <Link
+            to="/my"
+            className="text-blue-600 hover:text-blue-800 text-sm underline"
+          >
+            Näytä kaikki / muokkaa
+          </Link>
+        </div>
+
         <ul className="space-y-2">
           {entries.map((entry) => (
             <li
@@ -114,12 +108,6 @@ const AddKilometers = () => {
               <span>
                 {entry.date}: {entry.kilometers} km
               </span>
-              <button
-                onClick={() => handleDelete(entry._id)}
-                className="text-red-600 hover:text-red-800 transition"
-              >
-                Poista
-              </button>
             </li>
           ))}
         </ul>
