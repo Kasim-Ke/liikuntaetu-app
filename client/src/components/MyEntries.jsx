@@ -65,17 +65,19 @@ const MyEntries = () => {
       setEditingId(null);
     } catch (err) {
       console.error("Virhe päivityksessä:", err);
+      alert("Päivitys epäonnistui.");
     }
   };
 
-  const handleDelete = async (entryId) => {
+  const deleteEntry = async (id) => {
     if (!confirm("Haluatko varmasti poistaa tämän merkinnän?")) return;
 
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/kilometers/${entryId}`
+        `${import.meta.env.VITE_API_URL}/api/kilometers/${id}`
       );
-      setEntries(entries.filter((entry) => entry._id !== entryId));
+      setEntries(entries.filter((entry) => entry._id !== id));
+      setEditingId(null);
     } catch (err) {
       console.error("Virhe poistettaessa:", err);
       alert("Poisto epäonnistui.");
@@ -118,10 +120,10 @@ const MyEntries = () => {
                   Tallenna
                 </button>
                 <button
-                  onClick={() => setEditingId(null)}
-                  className="text-gray-600 underline"
+                  onClick={() => deleteEntry(editingId)}
+                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                 >
-                  Peruuta
+                  Poista
                 </button>
               </div>
             </div>
@@ -129,20 +131,12 @@ const MyEntries = () => {
             <div className="flex flex-col sm:flex-row justify-between w-full gap-2 sm:gap-0 sm:items-center">
               <span>{new Date(entry.date).toLocaleDateString("fi-FI")}</span>
               <span>{entry.kilometers} km</span>
-              <div className="flex gap-4">
-                <button
-                  onClick={() => startEditing(entry)}
-                  className="text-blue-600 underline hover:text-blue-800"
-                >
-                  Muokkaa
-                </button>
-                <button
-                  onClick={() => handleDelete(entry._id)}
-                  className="text-red-600 underline hover:text-red-800"
-                >
-                  Poista
-                </button>
-              </div>
+              <button
+                onClick={() => startEditing(entry)}
+                className="text-blue-600 underline hover:text-blue-800"
+              >
+                Muokkaa
+              </button>
             </div>
           )}
         </div>
