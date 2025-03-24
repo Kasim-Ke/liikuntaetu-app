@@ -201,6 +201,24 @@ app.post("/api/kilometers", async (req, res) => {
   }
 });
 
+// DELETE: poista kilometrimerkintä
+app.delete("/api/kilometers/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deleted = await Kilometer.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return res.status(404).json({ error: "Merkintää ei löytynyt" });
+    }
+
+    res.json({ message: "Merkintä poistettu onnistuneesti" });
+  } catch (err) {
+    console.error("Virhe merkinnän poistossa:", err);
+    res.status(500).json({ error: "Palvelinvirhe" });
+  }
+});
+
 // Serverin käynnistys
 app.listen(PORT, () => {
   console.log(`🚀 Serveri käynnissä portissa ${PORT}`);
