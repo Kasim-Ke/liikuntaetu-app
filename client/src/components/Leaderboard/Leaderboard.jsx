@@ -22,23 +22,22 @@ const Leaderboard = () => {
   const getMedal = (index) => {
     switch (index) {
       case 0:
-        return "👑";
+        return <span className="text-2xl text-yellow-500">👑</span>;
       case 1:
-        return "🥈";
+        return <span className="text-2xl text-gray-400">🥈</span>;
       case 2:
-        return "🥉";
+        return <span className="text-2xl text-amber-700">🥉</span>;
       default:
-        return index + 1;
+        return <span className="font-semibold">{index + 1}</span>;
     }
   };
 
   return (
     <div className="pt-24 px-4 max-w-3xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-amber-500 text-center">
-        Leaderboard
+      <h1 className="text-4xl font-bold mb-6 text-center text-black">
+        Kärkitaulukko
       </h1>
 
-      {/* Responsive Scroll Wrapper */}
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[500px]">
           <thead>
@@ -55,12 +54,14 @@ const Leaderboard = () => {
                 key={index}
                 className="odd:bg-white even:bg-gray-100 text-sm sm:text-base"
               >
-                <td className="p-2 font-bold">{getMedal(index)}</td>
+                <td className="p-2">{getMedal(index)}</td>
                 <td className="p-2">
                   {user.firstName} {user.lastName}
                 </td>
                 <td className="p-2">{user.department || "–"}</td>
-                <td className="p-2">{user.totalKilometers.toFixed(1)} km</td>
+                <td className="p-2 font-medium">
+                  {user.totalKilometers.toFixed(1)} km
+                </td>
               </tr>
             ))}
           </tbody>

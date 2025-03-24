@@ -90,7 +90,7 @@ const AddKilometers = () => {
 
       <div className="mt-6">
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-xl font-semibold">Aiemmat merkinnät</h3>
+          <h3 className="text-xl font-semibold">Aiemmat merkinnät:</h3>
           <Link
             to="/my"
             className="text-blue-600 hover:text-blue-800 text-sm underline"
