@@ -104,7 +104,9 @@ const Navbar = () => {
             </div>
 
             {/* CENTER */}
-            <div className="text-4xl font-bold tracking-wide">LIIKU</div>
+            <div className="text-4xl font-bold tracking-wide uppercase">
+              Liikuli{" "}
+            </div>
 
             {/* RIGHT - auth buttons */}
             <div className="flex items-center gap-2">
