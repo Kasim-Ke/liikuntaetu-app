@@ -10,8 +10,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        <Route path="/" element={<AddKilometers />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/add" element={<AddKilometers />} />
         <Route path="/my" element={<MyEntries />} />
       </Routes>
     </>
